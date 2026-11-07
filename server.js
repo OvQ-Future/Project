@@ -9,8 +9,8 @@ const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(ROOT, 'data'));
 const DATA_FILE = path.join(DATA_DIR, 'site.json');
-const PORT = Number(process.env.PORT) || 4173;
-const HOST = process.env.HOST || '0.0.0.0';
+const PORT = Number.parseInt(process.env.PORT, 10) || 4173;
+const HOST = normalizeBindHost(process.env.HOST);
 const ADMIN_KEY = process.env.ADMIN_KEY || null;
 const SECURE_COOKIES = process.env.COOKIE_SECURE === 'true' || (process.env.NODE_ENV === 'production' && process.env.COOKIE_SECURE !== 'false');
 const BUILTIN_KEY_HASH = '909f59a3a74e38b27e27cdcff084bc39640c2a9329853656db756f059e26eaab';
@@ -25,6 +25,12 @@ const expectedKeyHash = ADMIN_KEY
   : Buffer.from(BUILTIN_KEY_HASH, 'hex');
 
 const STATUS_VALUES = new Set(['active', 'wip', 'shipped', 'archived']);
+
+function normalizeBindHost(value) {
+  const host = String(value || '').trim();
+  if (!host || host === '[::]' || host === '::') return '0.0.0.0';
+  return host;
+}
 
 function pad(n) {
   return String(n).padStart(2, '0');
@@ -679,6 +685,10 @@ const server = http.createServer((req, res) => {
     console.error(error);
     if (!res.headersSent) publicError(res, 500, '服务器发生了意外错误。');
   }
+});
+
+server.on('error', (error) => {
+  console.error('Server failed to start:', error.message);
 });
 
 server.listen(PORT, HOST, () => {
