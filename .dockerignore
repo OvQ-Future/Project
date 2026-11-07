@@ -3,7 +3,6 @@
 !Dockerfile
 !package.json
 !server.js
-!docker-entrypoint.sh
 !public
 !public/**
 !data
