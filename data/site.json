@@ -1,0 +1,95 @@
+{
+  "profile": {
+    "name": "XAj",
+    "handle": "@xaj",
+    "tagline": "正在构建一些值得被记住的东西。",
+    "bio": "独立开发者 / 产品设计者。喜欢把复杂的问题拆成简单、可靠、每天都能用的产品。目前专注于开发者工具与本地优先应用。",
+    "location": "中国",
+    "skills": [
+      "Product Engineering",
+      "TypeScript",
+      "Node.js",
+      "UI Design"
+    ],
+    "avatar": ""
+  },
+  "projects": [
+    {
+      "id": "pulseboard",
+      "title": "Pulseboard",
+      "summary": "为独立开发者设计的轻量数据看板，把真正重要的信号留在视线里。",
+      "description": "# 项目概览\n\nPulseboard 是一个面向独立开发者和小型产品团队的轻量数据看板。它不试图替代专业 BI 工具，而是帮助你在每天开始时快速回答一个问题：**现在最值得关注的是什么？**\n\n## 核心能力\n\n- 用一行配置接入网站、API 与数据库指标\n- 自动生成日/周趋势，并标记异常波动\n- 可组合的轻量卡片，适合放在第二块屏幕常驻\n- 所有数据默认存储在你的设备或私有服务中\n\n## 技术选择\n\n前端使用 React + TypeScript，服务端采用 Node.js，指标存储使用 SQLite。项目保持单机可运行，也提供 Docker 部署方式。\n\n> 当前目标：把首次配置时间压缩到 3 分钟以内。\n\n## 下一步\n\n1. 完成 Webhook 告警通道\n2. 增加 CSV 导入\n3. 发布 v1.3 与公开文档",
+      "status": "active",
+      "tags": [
+        "React",
+        "TypeScript",
+        "SQLite"
+      ],
+      "createdAt": "2026-04-07T01:00:00.000Z",
+      "updatedAt": "2026-11-06T08:00:00.000Z",
+      "children": [
+        {
+          "id": "pulse-metrics",
+          "title": "实时指标引擎",
+          "summary": "用增量计算替代全量扫描的指标聚合模块。",
+          "description": "# 实时指标引擎\n\n这是 Pulseboard 的底层指标聚合模块。目标是在低资源设备上也能稳定处理秒级事件流。\n\n## 设计要点\n\n- 事件先写入环形缓冲区，再批量落盘\n- 按时间窗口预聚合，避免重复扫描\n- 查询层只读取已经压缩过的指标快照\n\n## 当前状态\n\n核心链路已经稳定，正在补充压力测试和故障恢复用例。",
+          "status": "active",
+          "tags": [
+            "Node.js",
+            "Streaming"
+          ],
+          "createdAt": "2026-07-08T03:00:00.000Z",
+          "updatedAt": "2026-10-26T07:00:00.000Z",
+          "children": []
+        },
+        {
+          "id": "pulse-ui",
+          "title": "可视化组件库",
+          "summary": "为数据产品准备的一套克制、可组合的界面组件。",
+          "description": "# 可视化组件库\n\n一套以信息密度和可读性优先的界面组件，包含趋势卡片、状态标记、筛选器与数据表格。\n\n目前以内部包的形式维护，等待 API 稳定后开源。",
+          "status": "wip",
+          "tags": [
+            "Design System",
+            "React"
+          ],
+          "createdAt": "2026-08-13T05:00:00.000Z",
+          "updatedAt": "2026-10-09T02:00:00.000Z",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "papertrail",
+      "title": "PaperTrail",
+      "summary": "把零散的灵感整理成可检索、可行动的个人知识网络。",
+      "description": "# PaperTrail\n\nPaperTrail 是一个本地优先的个人知识工具，帮助我把阅读笔记、产品灵感和待验证的假设连接起来。\n\n## 它解决什么问题\n\n传统笔记工具擅长保存，却不擅长提醒你「这条信息与什么有关」。PaperTrail 通过轻量标签、双向链接和每日回顾，让旧笔记重新进入工作流。\n\n## 功能切片\n\n- 本地优先的数据存储与离线可用\n- 双向链接与无感标签\n- 每日 3 条回顾卡片\n- 可导出的 Markdown 数据\n\n## 我的收获\n\n这个项目让我重新思考了搜索与组织之间的关系：**好的检索，往往来自更好的结构。**",
+      "status": "wip",
+      "tags": [
+        "TypeScript",
+        "IndexedDB",
+        "Local-first"
+      ],
+      "createdAt": "2026-06-04T06:00:00.000Z",
+      "updatedAt": "2026-11-03T12:00:00.000Z",
+      "children": []
+    },
+    {
+      "id": "opengrid",
+      "title": "OpenGrid",
+      "summary": "一个开源的响应式布局实验场，记录那些不常见的界面解法。",
+      "description": "# OpenGrid\n\nOpenGrid 是一个开放的响应式布局实验场。每个案例都尽量只使用 CSS Grid、容器查询和少量渐进增强脚本。\n\n## 已收录\n\n- 可变列数的编辑型布局\n- 不依赖 JavaScript 的瀑布流\n- 面向数据密集场景的折叠面板\n- 支持键盘导航的复杂卡片网格\n\n项目文档站已经上线，案例仍在持续补充。",
+      "status": "shipped",
+      "tags": [
+        "CSS",
+        "Open Source"
+      ],
+      "createdAt": "2025-12-12T02:00:00.000Z",
+      "updatedAt": "2026-10-30T10:00:00.000Z",
+      "children": []
+    }
+  ],
+  "activities": [],
+  "heatmap": {},
+  "createdAt": "2026-11-07T05:50:12.511Z",
+  "updatedAt": "2026-11-07T05:50:12.511Z"
+}

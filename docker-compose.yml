@@ -1,0 +1,28 @@
+﻿services:
+  developer-space:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: developer-space
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-4173}:4173"
+    environment:
+      NODE_ENV: production
+      PORT: 4173
+      HOST: 0.0.0.0
+      DATA_DIR: /app/data
+      ADMIN_KEY: ${ADMIN_KEY:?Please create .env and set ADMIN_KEY}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - devspace_data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:4173/healthz >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  devspace_data:
+    name: developer-space-data

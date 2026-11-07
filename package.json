@@ -1,0 +1,16 @@
+{
+  "name": "dev-space",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A personal developer space with owner-only editing.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "start:prod": "node server.js",
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "server.js"
+}

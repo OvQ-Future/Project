@@ -1,0 +1,10 @@
+# Only send the application files to the Docker build context.
+*
+!Dockerfile
+!package.json
+!server.js
+!public
+!public/**
+!data
+!data/**
+!data/site.json
